@@ -7,6 +7,7 @@ const prompts = [
         text: "Create a list with the values 1, 2, and 3.",
         answer: "x = [1, 2, 3]"
     }
+
     // Add more prompts here
 ];
 
@@ -34,7 +35,7 @@ function checkAnswer() {
         updatePrompt();
     } else {
         feedback.textContent = "That's not quite right. Try again!";
-        // Optionally, you might want to clear the input even if they're wrong, or leave it for them to correct
+        // Optionally, we might want to clear the input even if they're wrong, or leave it for them to correct
         // document.getElementById('codeInput').value = '';
     }
 }
