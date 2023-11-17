@@ -25,6 +25,16 @@
     </footer>
 
     <script src="practice.js"></script>
+    <script src="autocomplete.js"></script>
+
+    <!-- Script to initialize autocomplete -->
+    <script>
+        // DOMContentLoaded ensures the script runs after the entire page is loaded
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const textarea = document.getElementById('codeInput');
+            new Autocomplete(textarea);
+        });
+    </script>
 
 </body>
 </html>

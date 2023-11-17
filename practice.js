@@ -7,7 +7,7 @@ const prompts = [
         text: "Create a list with the values 1, 2, and 3.",
         answer: "x = [1, 2, 3]"
     }
-
+ 
     // Add more prompts here
 ];
 
@@ -49,5 +49,18 @@ document.getElementById('codeInput').addEventListener('keypress', function(event
         event.preventDefault(); // Prevent default to avoid adding a new line in textarea
         checkAnswer();
     }
+
+// Shift + Enter Method 
+
+/*
+
+document.getElementById('codeInput').addEventListener('keydown', function(event) {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+        event.preventDefault();
+        checkAnswer();
+    }
+})
+
+*/
 
 });

@@ -61,8 +61,24 @@ footer {
     margin-bottom: 10px;
 }
 
+.exercise button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Top/bottom, left/right padding */
+    margin: 10px 0; /* Margin for spacing */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size */
+}
+
+.exercise button:hover {
+    background-color: #45a049; /* Darker shade of green for hover effect*/
+}
+
 .code-area {
     width: 100%;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
     height: 200px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 1em;
