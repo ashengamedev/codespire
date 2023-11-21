@@ -1,66 +1,45 @@
-const prompts = [
-    {
-        text: "Create a variable to store the integer 5",
-        answer: "x = 5"
-    },
-    {
-        text: "Create a list with the values 1, 2, and 3.",
-        answer: "x = [1, 2, 3]"
-    }
- 
-    // Add more prompts here
-];
+let currentExercise;
 
-let currentPrompt;
+function generateRandomExercise() {
+    currentExercise = pythonRules.variableAssignment;
+    const generatedValue = currentExercise.generateValue();
+    console.log("Generated Value:", generatedValue); // Debugging
 
-function getRandomPrompt() {
-    const randomIndex = Math.floor(Math.random() * prompts.length);
-    return prompts[randomIndex];
+    currentExercise.expectedValue = generatedValue;
+    const fullExerciseText = currentExercise.template.replace('${value}', generatedValue);
+    console.log("Full Exercise Text:", fullExerciseText); // Debugging
+
+    return fullExerciseText;
 }
 
 function updatePrompt() {
-    currentPrompt = getRandomPrompt();
+    const exerciseText = generateRandomExercise();
     const promptDisplay = document.getElementById('prompt');
-    promptDisplay.textContent = `// ${currentPrompt.text}`;
+    promptDisplay.textContent = `// ${exerciseText}`;
 }
 
 function checkAnswer() {
     const userCode = document.getElementById('codeInput').value;
     const feedback = document.getElementById('feedback');
+    const isValid = currentExercise.validate(userCode, currentExercise.expectedValue);
 
-    if (userCode.includes(currentPrompt.answer)) {
+    if (isValid) {
         feedback.textContent = "Correct! Well done.";
-        // Clear the user input and update to a new prompt
         document.getElementById('codeInput').value = '';
         updatePrompt();
     } else {
-        feedback.textContent = "That's not quite right. Try again!";
-        // Optionally, we might want to clear the input even if they're wrong, or leave it for them to correct
-        // document.getElementById('codeInput').value = '';
+        feedback.textContent = "That's not right. Try again!";
     }
 }
 
-// Init the first prompt when the page loads
-updatePrompt();
-
-//Add event listener to handle Enter key submissions
-document.getElementById('codeInput').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent default to avoid adding a new line in textarea
-        checkAnswer();
-    }
-
-// Shift + Enter Method 
-
-/*
-
-document.getElementById('codeInput').addEventListener('keydown', function(event) {
-    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
-        event.preventDefault();
-        checkAnswer();
-    }
-})
-
-*/
-
+// Initialize the first exercise when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    updatePrompt();
+    const codeInput = document.getElementById('codeInput');
+    codeInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent default to avoid adding a new line in textarea
+            checkAnswer();
+        }
+    });
 });
